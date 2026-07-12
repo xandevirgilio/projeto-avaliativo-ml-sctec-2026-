@@ -59,19 +59,32 @@ O desenvolvimento deste ecossistema de machine learning seguiu as boas práticas
 
 ## 4. Resumo Executivo: Insights da Análise Exploratória (EDA)
 
-*   **Volumetria de Dados:** A base original apresenta um volume de `[Inserir Linhas]` linhas e `[Inserir Colunas]` colunas.
-*   **Desbalanceamento Crítico:** A classe alvo (`loan_status`) demonstrou uma distribuição altamente assimétrica, contendo `[Inserir %]%` de clientes adimplentes (Classe 0) e apenas `[Inserir %]%` de inadimplentes (Classe 1). Esse fator justificou a aplicação obrigatória da técnica de reamostragem sintética (*SMOTE*) na fase de preparação.
-*   **Correlações Relevantes:** O mapa de calor de correlação de Pearson revelou uma forte associação linear entre as variáveis `loan_amnt` e `loan_percent_income`, o que corrobora a hipótese de que o valor bruto isolado não dita o risco, mas sim o seu peso proporcional frente à renda do indivíduo.
-
+*   **Volumetria de Dados:** A base de dados original apresenta um volume massivo de **32.581 linhas** e **12 colunas** operacionais.
+*   **Desbalanceamento Crítico:** A classe alvo (`loan_status`) demonstrou uma distribuição altamente assimétrica, contendo **78,18%** de clientes adimplentes (25.473 registros na Classe 0) e apenas **21,82%** de inadimplentes (7.108 registros na Classe 1). Esse fator justifica a aplicação obrigatória da técnica de reamostragem sintética (*SMOTE*) na fase de modelagem para evitar o viés do algoritmo.
+*   **Descoberta de Anomalias e Nulos:** O sumário descritivo revelou dados ausentes em `loan_int_rate` (taxa de juros) e `person_emp_length` (tempo de emprego). Além disso, detectamos outliers severos de digitação/registro, como idade máxima de **144 anos** e tempo de emprego de **123 anos**, os quais receberão tratamento de limpeza na próxima fase do pipeline.
+*   **Correlações Relevantes:** O mapa de calor de correlação de Pearson revelou uma forte associação linear entre as variáveis `loan_amnt` e `loan_percent_income` (0.57), além de uma correlação natural esperada entre a idade do cliente e o tempo do seu histórico de crédito ativo (0.86).
 ---
 
-## 5. Pipeline de Preparação e Engenharia Segura
+## 5. Resultados dos Modelos e Métricas de Desempenho
 
-Para garantir a estabilidade matemática dos estimadores e evitar o vazamento de dados (*Data Leakage*), os seguintes critérios foram seguidos rigorosamente:
+O pipeline de Machine Learning avaliou dois algoritmos concorrentes utilizando a base de teste original (não balanceada) para garantir a fidelidade dos resultados em produção.
 
-1.  **Tratamento Estatístico de Nulos:** As variáveis com dados ausentes foram imputadas utilizando a **Mediana**, visto que o sumário descritivo apontou severa assimetria e presença de *outliers*, cenários onde a Média aritmética se torna uma métrica distorcida e enviesada.
-2.  **Isolamento do SMOTE:** O balanceamento de classes por geração de vizinhos sintéticos foi injetado **estritamente e apenas nos dados de treino** após o particionamento (`train_test_split`). O conjunto de teste manteve-se intacto, preservando a distribuição real do mercado para garantir uma validação robusta.
-3.  **Escalonamento Assimétrico:** O `StandardScaler` foi ajustado e aplicado unicamente para o modelo KNN. O modelo de Árvore de Decisão foi intencionalmente poupado do escalonamento, uma vez que algoritmos baseados em árvores efetuam partições cartesianas e cortes monotônicos independentes da escala dimensional dos dados.
+### Algoritmo 1: K-Nearest Neighbors (KNN)
+*   **Acurácia:** 78%
+*   **Métricas da Classe Crítica (Inadimplente - 1):**
+    *   *Precision:* 0.49 (Alto índice de falsos alarmes, classificando adimplentes como de risco).
+    *   *Recall:* 0.68 (Capturou apenas 68% dos clientes em situação de inadimplência).
+    *   *F1-Score:* 0.57
+
+### Algoritmo 2: Árvore de Decisão (Decision Tree) - CAMPEÃO
+*   **Acurácia:** 91%
+*   **Métricas da Classe Crítica (Inadimplente - 1):**
+    *   *Precision:* 0.83 (Excelente assertividade ao apontar um perfil de risco).
+    *   *Recall:* 0.73 (Identificou com eficácia 73% da inadimplência real da base de teste).
+    *   *F1-Score:* 0.78
+
+### Justificativa de Escolha do Modelo
+A **Árvore de Decisão** foi selecionada como o modelo de produção para este projeto. Ela superou o KNN em todas as métricas essenciais, demonstrando robustez contra a alta dimensionalidade gerada pelas variáveis categóricas encodadas. O Recall de 73% atrelado a uma precisão de 83% garante um equilíbrio financeiro saudável para a instituição, mitigando o risco de crédito sem bloquear clientes legítimos.
 
 ---
 
