@@ -108,4 +108,4 @@ Abaixo estão consolidadas as matrizes de experimentos para diagnóstico de sobr
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/xandevirgilio/projeto-avaliativo-ml-sctec-2026-](https://github.com/xandevirgilio/projeto-avaliativo-ml-sctec-2026-)
+   git clone https://github.com/xandevirgilio/projeto-avaliativo-ml-sctec-2026-
