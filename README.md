@@ -59,10 +59,10 @@ O desenvolvimento deste ecossistema de machine learning seguiu as boas práticas
 
 ## 4. Resumo Executivo: Insights da Análise Exploratória (EDA)
 
-*   **Volumetria de Dados:** A base original apresenta um volume de `[Inserir Linhas]` linhas e `[Inserir Colunas]` colunas.
-*   **Desbalanceamento Crítico:** A classe alvo (`loan_status`) demonstrou uma distribuição altamente assimétrica, contendo `[Inserir %]%` de clientes adimplentes (Classe 0) e apenas `[Inserir %]%` de inadimplentes (Classe 1). Esse fator justificou a aplicação obrigatória da técnica de reamostragem sintética (*SMOTE*) na fase de preparação.
-*   **Correlações Relevantes:** O mapa de calor de correlação de Pearson revelou uma forte associação linear entre as variáveis `loan_amnt` e `loan_percent_income`, o que corrobora a hipótese de que o valor bruto isolado não dita o risco, mas sim o seu peso proporcional frente à renda do indivíduo.
-
+*   **Volumetria de Dados:** A base de dados original apresenta um volume massivo de **32.581 linhas** e **12 colunas** operacionais.
+*   **Desbalanceamento Crítico:** A classe alvo (`loan_status`) demonstrou uma distribuição altamente assimétrica, contendo **78,18%** de clientes adimplentes (25.473 registros na Classe 0) e apenas **21,82%** de inadimplentes (7.108 registros na Classe 1). Esse fator justifica a aplicação obrigatória da técnica de reamostragem sintética (*SMOTE*) na fase de modelagem para evitar o viés do algoritmo.
+*   **Descoberta de Anomalias e Nulos:** O sumário descritivo revelou dados ausentes em `loan_int_rate` (taxa de juros) e `person_emp_length` (tempo de emprego). Além disso, detectamos outliers severos de digitação/registro, como idade máxima de **144 anos** e tempo de emprego de **123 anos**, os quais receberão tratamento de limpeza na próxima fase do pipeline.
+*   **Correlações Relevantes:** O mapa de calor de correlação de Pearson revelou uma forte associação linear entre as variáveis `loan_amnt` e `loan_percent_income` (0.57), além de uma correlação natural esperada entre a idade do cliente e o tempo do seu histórico de crédito ativo (0.86).
 ---
 
 ## 5. Pipeline de Preparação e Engenharia Segura
