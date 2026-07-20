@@ -112,9 +112,8 @@ Abaixo estão consolidadas as matrizes de experimentos para diagnóstico de sobr
 
 ## 7. Veredito de Negócios (Recomendação Executiva)
 
-*   **Análise de Impacto Financeiro:** O modelo de **[Inserir Modelo Selecionado]** obteve o melhor desempenho corporativo. Embora a acurácia global possa parecer similar à do concorrente, ele apresentou uma métrica de **Recall (Sensibilidade)** drasticamente superior para a Classe 1 (Inadimplentes). No contexto bancário, capturar o caloteiro (reduzir Falsos Negativos) poupa o patrimônio líquido direto do banco, compensando amplamente o pequeno aumento de Falsos Positivos.
-*   **Veredito Final:** Recomenda-se a homologação e implantação em produção do modelo de **[Inserir Modelo Selecionado]** configurado com o parâmetro **[Inserir Parâmetro Ótimo]**, alinhando de forma perfeita a acurácia matemática à saúde financeira do negócio.
-
+* **Análise de Impacto Financeiro:** O modelo de **Árvore de Decisão** obteve o melhor desempenho corporativo. Embora a acurácia global possa parecer similar à do concorrente, ele apresentou uma métrica de **Recall (Sensibilidade)** drasticamente superior para a Classe 1 (Inadimplentes). No contexto bancário, capturar o caloteiro (reduzir Falsos Negativos) poupa o patrimônio líquido direto do banco, compensando amplamente o pequeno aumento de Falsos Positivos.
+* **Veredito Final:** Recomenda-se a homologação e implantação em produção do modelo de **Árvore de Decisão** configurado com o parâmetro **`max_depth=8`**, alinhando de forma perfeita a acurácia matemática à saúde financeira do negócio.
 ---
 
 ## Como Executar este Projeto
