@@ -1,6 +1,6 @@
 # Pipeline Preditivo de Machine Learning: Análise Estatística e Decisão de Negócios
 
-> 💡 **Nota de Visualização:** Caso o GitHub apresente instabilidade para renderizar o arquivo `.ipynb`, [clique aqui para visualizar o Notebook completo e interativo via NBViewer](https://nbviewer.org/github/xandevirgilio/projeto-avaliativo-ml-sctec-2026-/blob/main/projeto_ml.ipynb).
+> 💡 **Nota de Visualização:** O notebook completo com todos os outputs, tabelas e gráficos está renderizado diretamente no arquivo `projeto_ml.ipynb`. Uma versão em HTML de backup também está disponível no repositório como `projeto_ml.html`.
 
 Este repositório contém o projeto prático avaliativo desenvolvido para o módulo de **Machine Learning e Visão Computacional**. O objetivo deste trabalho é construir um pipeline preditivo de ponta a ponta, aplicando o rigor científico na preparação de dados, engenharia de recursos (*Feature Engineering*), sintonia de hiperparâmetros, combate ao *overfitting* e, fundamentalmente, traduzindo métricas estatísticas em decisões financeiras estratégicas para a diretoria executiva.
 
